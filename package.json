@@ -1,0 +1,142 @@
+{
+  "name": "local-reverse",
+  "version": "0.7.0",
+  "description": "Android APK inspection kit: package info, permissions, hardening and packer fingerprints, dex classes and strings, crypto hints, plus jadx/apktool export.",
+  "license": "MIT",
+  "author": "KK732",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kk732/local-reverse.git"
+  },
+  "homepage": "https://github.com/kk732/local-reverse#readme",
+  "keywords": [
+    "dsh-plugin",
+    "dsh-go",
+    "apk",
+    "reverse-engineering",
+    "android",
+    "jadx",
+    "apktool"
+  ],
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js"
+  },
+  "bin": {
+    "re-kit": "bin/re-kit.mjs"
+  },
+  "files": [
+    "lib",
+    "bin",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "dsh": ">=0.2.1-rc.2 <0.3.0-0",
+    "node": ">=18"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "dshGo": {
+    "v": 1,
+    "title": {
+      "zh": "逆向工具箱",
+      "en": "RE kit"
+    },
+    "icon": "bug",
+    "capabilities": [
+      "files"
+    ],
+    "wants": [
+      "draft"
+    ],
+    "contributes": {
+      "composer.actions": [
+        {
+          "id": "open-box",
+          "label": {
+            "zh": "逆向工具",
+            "en": "RE kit"
+          },
+          "icon": "bug"
+        },
+        {
+          "id": "find-class",
+          "label": {
+            "zh": "搜类",
+            "en": "Find class"
+          },
+          "icon": "search"
+        }
+      ],
+      "composer.tools": [
+        {
+          "id": "scan-apk",
+          "label": {
+            "zh": "APK 体检",
+            "en": "Scan APK"
+          },
+          "icon": "search",
+          "requires": [
+            "files"
+          ]
+        }
+      ],
+      "panels": [
+        {
+          "id": "apk-list",
+          "title": {
+            "zh": "APK 列表",
+            "en": "APKs"
+          },
+          "icon": "folder",
+          "placement": [
+            "session.tab",
+            "features"
+          ]
+        },
+        {
+          "id": "apk-detail",
+          "title": {
+            "zh": "APK 详情",
+            "en": "APK detail"
+          },
+          "icon": "code",
+          "placement": [
+            "session.tab",
+            "features"
+          ]
+        },
+        {
+          "id": "class-list",
+          "title": {
+            "zh": "类搜索",
+            "en": "Classes"
+          },
+          "icon": "search",
+          "placement": [
+            "session.tab",
+            "features"
+          ]
+        },
+        {
+          "id": "code",
+          "title": {
+            "zh": "反编译代码",
+            "en": "Java code"
+          },
+          "icon": "code",
+          "placement": [
+            "session.tab",
+            "features"
+          ]
+        }
+      ]
+    }
+  }
+}
